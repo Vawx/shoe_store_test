@@ -4,7 +4,7 @@
     <div class="well">
       <ul>
       <% @stores.each do |store| %>
-        <li><a href="/store_page/<%=store.id%>"><b style="font-size:18px;"><%=store.name%></b></a> Location: <%=store.zipcode%></li>
+        <li><a href="/store_page/<%=store.id%>"><b style="font-size:18px;color:rgb(40,40,200);"><%=store.name%></b></a> Location: <%=store.zipcode%></li>
       <%end%>
       </ul>
       <form class="" action="/add_store" method="post">
@@ -22,7 +22,7 @@
     <div class="well">
       <ul>
       <% @shoes.each do |shoe| %>
-        <li><a href="/shoe_page/<%=shoe.id%>"><b style="font-size:18px;"><%=shoe.name%></b></a> Location: <%=shoe.cost%></li>
+        <li><b style="font-size:18px;color:rgb(200,40,40);"><%=shoe.name%></b> Location: <%=shoe.cost%></li>
       <%end%>
       </ul>
       <form class="" action="/add_shoe" method="post">

@@ -63,3 +63,9 @@ delete '/delete_shoe_from_store/:store_id/:shoe_id' do
   store.shoes.delete(shoe)
   redirect '/store_page/' + store.id.to_s
 end
+
+delete '/delete_store/:store_id' do
+  store = Store.find(params[:store_id])
+  store.delete
+  redirect '/'
+end
