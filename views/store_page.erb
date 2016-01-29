@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="col-xs-6">
+    <label for=""><%=@store.name%> Location <%=@store.zipcode%></label>
+    <div class="well">
+      <form class="" action="/update_store/<%=@store.id%>" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <label for="">Change Store Settings</label>
+        <div>
+          <input type="text" name="store_name" value="<%=@store.name%>">
+          <input type="number" name="store_zip" value="<%@store.zipcode%>">
+          <button type="submit" class="btn btn-info" name="button">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
