@@ -16,13 +16,6 @@ get '/store_page/:id' do
   @store = Store.find(params[:id])
   @store_shoes = @store.shoes
   @shoes = Shoe.all
-  @shoes.each do |s|
-    @store_shoes.each do |ss|
-      if s.name == ss.name
-        @shoes.delete( s )
-      end
-    end
-  end
   erb :store_page
 end
 
@@ -47,4 +40,26 @@ patch '/update_store/:id' do
     update_store.update({zipcode: params.fetch("store_zip")})
   end
   redirect '/store_page/' + params[:id].to_s
+end
+
+patch '/add_shoe_to_store/:store_id/:shoe_id' do
+  store = Store.find(params[:store_id])
+  shoe = Shoe.find(params[:shoe_id])
+  found = false
+  store.shoes.each do |s|
+    if s.name == shoe.name
+      found = true
+    end
+  end
+  if !found
+    store.shoes.push(shoe)
+  end
+  redirect '/store_page/' + store.id.to_s
+end
+
+delete '/delete_shoe_from_store/:store_id/:shoe_id' do
+  store = Store.find(params[:store_id])
+  shoe = Shoe.find(params[:shoe_id])
+  store.shoes.delete(shoe)
+  redirect '/store_page/' + store.id.to_s
 end

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="container" style="text-align:center;">
-    <h2><%=@store.name%> : Location <%=@store.zipcode%></h2>
+    <h2><%=@store.name%> : Zip Code <%=@store.zipcode%></h2>
   </div>
   <div class="col-xs-6">
     <label for="">Current Shoe Brands</label>
@@ -8,26 +8,17 @@
       <div class="container">
         <ul>
         <% @store_shoes.each do |shoe| %>
-          <form class="" action="/delete_shoe/<%=shoe.id%>" method="post">
-            <input type="hidden" name="method" value="delete">
+          <form class="" action="/delete_shoe_from_store/<%=@store.id%>/<%=shoe.id%>" method="post">
+            <input type="hidden" name="_method" value="delete">
             <label for="">Delete Shoe</label>
             <div class="container">
-              <b><%=shoe.name%> Cost: <%=shoe.cost%></b>
-              <button type="submit" name="button">Delete</button>
+              <b style="font-size:16px;"><%=shoe.name%></b> - Cost: <%=shoe.cost%>
+              <button type="submit" class="btn btn-danger" name="button">Delete</button>
             </div>
           </form>
         <%end%>
         </ul>
       </div>
-      <form class="" action="/update_store/<%=@store.id%>" method="post">
-        <input type="hidden" name="_method" value="patch">
-        <label for="">Change Store Settings</label>
-        <div>
-          <input type="text" name="store_name" value="<%=@store.name%>">
-          <input type="number" name="store_zip" value="<%@store.zipcode%>">
-          <button type="submit" class="btn btn-info" name="button">Update</button>
-        </div>
-      </form>
     </div>
   </div>
   <div class="col-xs-6">
@@ -37,12 +28,29 @@
         <ul>
           <% @shoes.each do |s| %>
             <form class="" action="/add_shoe_to_store/<%=@store.id%>/<%=s.id%>" method="post">
+              <input type="hidden" name="_method" value="patch">
               <label for="" style="font-size:12px;"><b style="font-size:16px;"><%=s.name%></b> - Cost: <%=s.cost%></label>
               <button type="submit" class="btn btn-success" name="button">Add To Store</button>
             </form>
           <%end%>
         </ul>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="col-xs-8 col-xs-offset-2">
+    <div class="well" style="text-align:center;">
+      <form class="" action="/update_store/<%=@store.id%>" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <label for="">Change Store Settings</label>
+        <div>
+          <input type="text" name="store_name" value="<%=@store.name%>">
+          <input type="number" name="store_zip" value="<%=@store.zipcode.to_s%>">
+          <button type="submit" class="btn btn-info" name="button">Update</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
