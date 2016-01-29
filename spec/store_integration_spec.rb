@@ -13,6 +13,7 @@ feature 'add a store' do
     fill_in 'store_zip', with: '34234'
     click_button 'Add Store'
     expect(page).to have_content 'Franks Shoe Store'
+    expect(page).to have_content '34234'
   end
 end
 
@@ -23,6 +24,7 @@ feature 'add a shoe' do
     fill_in 'shoe_cost', with: "99"
     click_button 'Add Shoe'
     expect(page).to have_content 'Addidas'
+    expect(page).to have_content '99'
   end
 
 end
