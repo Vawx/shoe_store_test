@@ -4,14 +4,14 @@ require 'sinatra/activerecord'
 require 'rspec'
 require 'pg'
 require 'shoe'
-require 'shoestore'
+require 'store'
 
 RSpec.configure do |config|
   config.after :each do
     Shoe.all.each do |r|
       r.destroy
     end
-    ShoeStore.all.each do |s|
+    Store.all.each do |s|
       s.destroy
     end
   end
