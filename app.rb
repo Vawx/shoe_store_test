@@ -9,12 +9,20 @@ also_reload( './lib/**/*.rb')
 get '/' do
   @shoes = Shoe.all
   @stores = Store.all
-  binding.pry
   erb :index
 end
 
 get '/store_page/:id' do
   @store = Store.find(params[:id])
+  @store_shoes = @store.shoes
+  @shoes = Shoe.all
+  @shoes.each do |s|
+    @store_shoes.each do |ss|
+      if s.name == ss.name
+        @shoes.delete( s )
+      end
+    end
+  end
   erb :store_page
 end
 

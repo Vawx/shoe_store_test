@@ -1,7 +1,24 @@
 <div class="container">
+  <div class="container" style="text-align:center;">
+    <h2><%=@store.name%> : Location <%=@store.zipcode%></h2>
+  </div>
   <div class="col-xs-6">
-    <label for=""><%=@store.name%> Location <%=@store.zipcode%></label>
+    <label for="">Current Shoe Brands</label>
     <div class="well">
+      <div class="container">
+        <ul>
+        <% @store_shoes.each do |shoe| %>
+          <form class="" action="/delete_shoe/<%=shoe.id%>" method="post">
+            <input type="hidden" name="method" value="delete">
+            <label for="">Delete Shoe</label>
+            <div class="container">
+              <b><%=shoe.name%> Cost: <%=shoe.cost%></b>
+              <button type="submit" name="button">Delete</button>
+            </div>
+          </form>
+        <%end%>
+        </ul>
+      </div>
       <form class="" action="/update_store/<%=@store.id%>" method="post">
         <input type="hidden" name="_method" value="patch">
         <label for="">Change Store Settings</label>
@@ -11,6 +28,21 @@
           <button type="submit" class="btn btn-info" name="button">Update</button>
         </div>
       </form>
+    </div>
+  </div>
+  <div class="col-xs-6">
+    <label for="">Add shoe brands</label>
+    <div class="well">
+      <div class="container">
+        <ul>
+          <% @shoes.each do |s| %>
+            <form class="" action="/add_shoe_to_store/<%=@store.id%>/<%=s.id%>" method="post">
+              <label for="" style="font-size:12px;"><b style="font-size:16px;"><%=s.name%></b> - Cost: <%=s.cost%></label>
+              <button type="submit" class="btn btn-success" name="button">Add To Store</button>
+            </form>
+          <%end%>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
