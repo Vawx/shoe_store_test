@@ -5,6 +5,7 @@ require 'rspec'
 require 'pg'
 require 'shoe'
 require 'store'
+require 'pry'
 
 RSpec.configure do |config|
   config.after :each do
