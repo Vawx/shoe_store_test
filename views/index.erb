@@ -1,1 +1,38 @@
-<h1>Shoe Store</h1>
+<div class="container">
+  <div class="col-xs-6">
+    <label for="">Current Stores</label>
+    <div class="well">
+      <ul>
+      <% @stores.each do |store| %>
+        <li><a href="/store_page/<%=store.id%>"><b style="font-size:18px;"><%=store.name%></b></a> Location: <%=store.zipcode%></li>
+      <%end%>
+      </ul>
+      <form class="" action="/add_store" method="post">
+        <label for="">New Store</label>
+        <div>
+          <input type="text" name="store_name" value="" placeholder="Store name..." reqiured>
+          <input type="number" name="store_zip" value="" placeholder="Store zip code..." reqiured>
+          <button type="submit" class="btn btn-info" name="button">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-xs-6">
+    <label for="">Current Shoe Brands</label>
+    <div class="well">
+      <ul>
+      <% @shoes.each do |shoe| %>
+        <li><a href="/shoe_page/<%=shoe.id%>"><b style="font-size:18px;"><%=shoe.name%></b></a> Location: <%=shoe.cost%></li>
+      <%end%>
+      </ul>
+      <form class="" action="/add_shoe" method="post">
+        <label for="">New Shoe Brand</label>
+        <div>
+          <input type="text" name="shoe_name" value="" placeholder="Shoe brand name..." reqiured>
+          <input type="number" name="shoe_cost" value="" placeholder="Shoe cost..." reqiured>
+          <button type="submit" class="btn btn-info" name="button">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
