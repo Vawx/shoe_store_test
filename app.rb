@@ -9,6 +9,7 @@ also_reload( './lib/**/*.rb')
 get '/' do
   @shoes = Shoe.all
   @stores = Store.all
+  binding.pry
   erb :index
 end
 
